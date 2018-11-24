@@ -23,6 +23,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <spring-boot-admin.version>2.1.1</spring-boot-admin.version>
+        <dockerfile-maven-version>1.4.9</dockerfile-maven-version>
     </properties>
 
     <dependencies>
@@ -86,6 +87,27 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>${dockerfile-maven-version}</version>
+                <executions>
+                    <execution>
+                        <id>default</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <repository>courses</repository>
+                    <tag>latest</tag>
+                    <buildArgs>
+                        <JAR_FILE>target/${project.build.finalName}.${project.packaging}</JAR_FILE>
+                    </buildArgs>
+                </configuration>
             </plugin>
         </plugins>
     </build>
