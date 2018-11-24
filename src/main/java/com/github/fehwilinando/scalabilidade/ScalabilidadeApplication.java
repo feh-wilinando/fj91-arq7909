@@ -4,15 +4,12 @@ import com.github.fehwilinando.scalabilidade.shared.domain.Author;
 import com.github.fehwilinando.scalabilidade.shared.domain.Course;
 import com.github.fehwilinando.scalabilidade.shared.repository.AuthorCommandRepository;
 import com.github.fehwilinando.scalabilidade.shared.repository.CourseCommandRepository;
-import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.annotation.PostConstruct;
 
-@EnableAdminServer
 @SpringBootApplication
 public class ScalabilidadeApplication {
 

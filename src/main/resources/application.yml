@@ -6,6 +6,12 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:8088
+#        instance:
+#          name: courses
 
 management:
   endpoints:

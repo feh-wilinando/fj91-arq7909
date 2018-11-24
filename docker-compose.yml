@@ -9,8 +9,7 @@ services:
     - scalabilidade:/var/lib/mysql
     networks:
     - interna
-
-  courses:
+  courses.a:
     image: courses
     environment:
     - DB_HOST=database
@@ -19,6 +18,15 @@ services:
     restart: on-failure
     networks:
     - interna
+  courses.b:
+    image: courses
+    environment:
+      - DB_HOST=database
+    depends_on:
+      - database
+    restart: on-failure
+    networks:
+      - interna
   proxy:
     image: nginx:alpine
     ports:
@@ -26,7 +34,8 @@ services:
     volumes:
     - ./src/main/resources/nginx/:/etc/nginx/conf.d/
     depends_on:
-    - courses
+    - courses.a
+    - courses.b
     restart: on-failure
     networks:
     - interna
