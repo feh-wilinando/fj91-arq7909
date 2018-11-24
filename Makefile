@@ -1,6 +1,6 @@
 PHONY = up
 
-up: package
+up:
 	@ echo "Starting project"
 	@ docker-compose up -d
 
