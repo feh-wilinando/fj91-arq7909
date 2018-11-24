@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  database:
+    image: mysql
+    environment:
+    - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+    - scalabilidade:/var/lib/mysql
+    networks:
+    - interna
+
+  courses:
+    image: courses
+    environment:
+    - DB_HOST=database
+    ports:
+    - "8080:8080"
+    depends_on:
+    - database
+    restart: on-failure
+    networks:
+    - externa
+    - interna
+
+
+volumes:
+  scalabilidade:
+networks:
+  interna:
+  externa:
