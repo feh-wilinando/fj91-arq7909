@@ -32,8 +32,6 @@ services:
     - interna
     - externa
 
-
-
 volumes:
   scalabilidade:
 networks:
