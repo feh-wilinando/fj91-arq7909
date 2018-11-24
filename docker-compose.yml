@@ -14,14 +14,24 @@ services:
     image: courses
     environment:
     - DB_HOST=database
-    ports:
-    - "8080:8080"
     depends_on:
     - database
     restart: on-failure
     networks:
-    - externa
     - interna
+  proxy:
+    image: nginx:alpine
+    ports:
+    - "8080:80"
+    volumes:
+    - ./src/main/resources/nginx/:/etc/nginx/conf.d/
+    depends_on:
+    - courses
+    restart: on-failure
+    networks:
+    - interna
+    - externa
+
 
 
 volumes:
